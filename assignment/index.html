@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Week 2: Asgmt1~3 - Karen HaoYi Tu</title>
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" type"text/css" href="venders/rainbow/themes/css/monokai.css">
+	<script src="js/script.js"></script>
+</head>
+<body>
+	<div class="container">
+
+		<h2>Assignment 1: Callback Function</h2>
+		<p>Complete the function below to show a delayed result in console.</p>
+		<pre>
+			<code data-language="javascript">
+function delayedResult(n1, n2, delayTime, callback){
+// your code here
+}
+delayedResult(4, 5, 3000, function(result){
+console.log(result);
+}); ​// 9 (4+5) will be shown in the console after 3 seconds delayedResult(-5, 10, 2000, function(result){
+window.alert(result);
+}); ​// 5 (-5+10) will be shown in an alert dialog after 2 seconds
+const result = ('n1+n2');
+let delayTime = 3000; 
+window.setTimeout(() => {console.log(result+' after 3 seconds');}, delayTime);
+let delayTime2 = 2000; 
+window.setTimeout(() => {window.alert(result+' after 2 seconds');}, delayTime2);
+			</code>
+		</pre>
+	</div>
+
+
+	<script type="text/javascript"></script>
+	<!-- Rainbow -->
+	<script src="venders/rainbow/dist/rainbow.min.js"></script>		
+	<script src="venders/rainbow/src/language/generic.js"></script>
+	<script src="venders/rainbow/src/language/javascript.js"></script>
+</body>
+</html>
