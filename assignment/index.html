@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Week 2: Asgmt1~3 - Karen HaoYi Tu</title>
+	<title>Week 4: Asgmt1 - Karen HaoYi Tu</title>
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" type"text/css" href="venders/rainbow/themes/css/monokai.css">
 	<script src="js/script.js"></script>
@@ -15,19 +15,15 @@
 		<pre>
 			<code data-language="javascript">
 function delayedResult(n1, n2, delayTime, callback){
-// your code here
+ 	let result = n1 + n2
+ 	window.setTimeout(() => {callback(result)}, delayTime);
 }
 delayedResult(4, 5, 3000, function(result){
 console.log(result);
-}); ​// 9 (4+5) will be shown in the console after 3 seconds
-delayedResult(-5, 10, 2000, function(result){
+});// 9 (4+5) will be shown in the console after 3 seconds
+delayedResult(-5,10, 2000, function(result){
 window.alert(result);
-}); ​// 5 (-5+10) will be shown in an alert dialog after 2 seconds
-const result = ('n1+n2');
-let delayTime = 3000; 
-window.setTimeout(() => {console.log(result+' after 3 seconds');}, delayTime);
-let delayTime2 = 2000; 
-window.setTimeout(() => {window.alert(result+' after 2 seconds');}, delayTime2);
+});// 5 (-5+10) will be shown in an alert dialog after 2 seconds
 			</code>
 		</pre>
 	</div>
