@@ -1,62 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Assignment 2: Callback Function and Advanced HTML DOM</title>
-	<link rel="stylesheet" href="stylesheets/style.css">
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <title>Assignment 2: Callback Function and Advanced HTML DOM</title>
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
-    	<h1 class="header h1">Callback Function and Advanced HTML DOM</h1>
+        <h1 class="header h1">Callback Function and Advanced HTML DOM</h1>
     </header>
     <section class="namecard">
-         <div id="sum_sub">
-            <h2 id="sum_result" class="u-input">Header 2</h2>
-        </div>
-        <div class="namecard-form">
-            <label class="namecard-prompt">
-                Enter A Positive Integer:
-            </label>
-            <input id="input_number" class="namecard-name" type="text" name="number">
-            <button class="number-submit" onclick ="submitFucntion()">Submit</div>
+        <div  class="namecard-form u-margin">
+            <table id="table" style="width:100%">
+              <tr>
+                <td> </td>
+                <td> Name </td>
+                <td> Price </td>
+                <td> Description </td>
+              </tr>
+
+            </table>
         </div>
     </section>
-	<script>
-		function ajax(src, callback){
-			$.ajax({
-					url: src,
-					dataType: 'json',
-					type: 'GET',
-					crossDomain: true,
-					success: function(response){
-						callback(response);
-					}
-			});			
+    <section  class="u-margin">
+    <code>
+        <pre>
+
+    function ajax(src, callback){
+        $.ajax({
+                url: src,
+                dataType: 'json',
+                type: 'GET',
+                crossDomain: true,
+                success: function(response){
+                    callback(response);
+                }
+        });         
+    }
+    function render(data){
+        for (let i = 0; i< data.length; i++){
+        
+            console.log(data[i].name );
+            let shopHTML = " ";
+            shopHTML += "&lt;tr>&lt;td>"+ i +"&lt;/td>&lt;td>"+ data[i].name+"&lt;/td>&lt;td>"+ data[i].price +"&lt;/td>&lt;td>"+data[i].description+"&lt;/td>&lt;/tr>";
+            console.log(shopHTML);
+            $(table).append(shopHTML);
         }
-
+     }
+    ajax("https://cwpeng.github.io/live-records-samples/data/products.json", function(response){
+            render(response);
+        });
+        </pre>
+    </code>           
+    </section> 
+    <script>
+        function ajax(src, callback){
+            $.ajax({
+                    url: src,
+                    dataType: 'json',
+                    type: 'GET',
+                    crossDomain: true,
+                    success: function(response){
+                        callback(response);
+                    }
+            });         
+        }
         function render(data){
-            var items = [];
-	        console.log(data);
-	        $.each(data, function (key, val) {
-                items.push("<li id='" + key + "'>" + val.price + "</li>");
-				items.push("<li id='" + key + "'>" + val.name + "</li>");
-                items.push("<li id='" + key + "'>" + val.description + "</li>");
-
-            });
-            $("<ul/>", {
-	            "class": "my-new-list",
-                html: items.join("")
-            }).appendTo("body");
+            for (let i = 0; i< data.length; i++){
+            
+                console.log(data[i].name );
+                let shopHTML = " ";
+                shopHTML += "<tr><td>"+ i +"</td><td>"+ data[i].name+"</td><td>"+ data[i].price +"</td><td>"+data[i].description+"</td></tr>";
+                console.log(shopHTML);
+                $(table).append(shopHTML);
+            }
          }
-
-		$( document ).ready(function() {
-            console.log( "ready!" );
-	        ajax("https://cwpeng.github.io/live-records-samples/data/products.json", function(response){
+        ajax("https://cwpeng.github.io/live-records-samples/data/products.json", function(response){
                 render(response);
             });
-        });
-	</script>
+    </script>
 </body>
 
 </html>
