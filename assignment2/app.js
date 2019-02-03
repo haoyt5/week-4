@@ -8,6 +8,9 @@ app.get('/', (req, res)=>{
 app.use(express.static('public'));
 
 app.use("/getData", function(req, res, next){
+	res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+
 	req.lackMessage = "Lack of Parameter";
 	req.wrongMessage = "Wrong Parameter";
 	getNum = req.query.number; 
@@ -24,8 +27,19 @@ app.use("/getData", function(req, res, next){
 	}
 	next();
 });
+ 
 
 
-
+ app.all('/', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next()
+ });
+app.get('/', function(req, res, next) {
+    // Handle the get for this route
+  });
+app.post('/', function(req, res, next) {
+    // Handle the post for this route
+  })
 
 app.listen(3000);

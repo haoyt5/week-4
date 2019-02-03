@@ -11,52 +11,43 @@
         <h1 class="header h1">Callback Function and Advanced HTML DOM</h1>
     </header>
     <section class="namecard">
-        <div  class="namecard-form u-margin">
-            <table id="table" style="width:100%">
-              <tr>
-                <td> </td>
-                <td> Name </td>
-                <td> Price </td>
-                <td> Description </td>
-              </tr>
+        <div id="outpuTable" class="namecard-form u-margin">
+            
 
-            </table>
+<!-- 
+            </table> -->
         </div>
     </section>
     <section  class="u-margin">
     <code>
         <pre>
 
-    function ajax(src, callback){
-        var xhr = new XMLHttpRequest();
-                xhr.open('GET', src, true);
-                xhr.setRequestHeader('Content-Type', 'application/json');
-                xhr.setRequestHeader('Access-Control-Allow-Origin', 'https://cwpeng.github.io/live-records-samples/data/products.json');
-                xhr.setRequestHeader('Access-Control-Allow-Credential',true);
-                xhr.setRequestHeader('Access-Control-Allow-Methods', 'GET');
-                xhr.send();
-
-                xhr.onload = function() {
-                if (xhr.status === 200) {
-                    callback(JSON.parse(xhr.responseText));
-                } else {
-                   alert('Request failed.  Returned status of ' + xhr.status);
-                }
-                };        
-    }
-    function render(data){
-        for (let i = 0; i< data.length; i++){
-        
-            console.log(data[i].name );
-            let shopHTML = " ";
-            shopHTML += "&lt;tr>&lt;td>"+ i +"&lt;/td>&lt;td>"+ data[i].name+"&lt;/td>&lt;td>"+ data[i].price +"&lt;/td>&lt;td>"+data[i].description+"&lt;/td>&lt;/tr>";
-            console.log(shopHTML);
-            $(table).append(shopHTML);
+function ajax(src, callback){
+var xhr = new XMLHttpRequest();
+        xhr.open('GET', src, true);
+        xhr.withCreadentials =false;
+        xhr.send();
+        xhr.onload = function() {
+        if (xhr.status === 200) {
+            callback(JSON.parse(xhr.responseText));
+        } else {
+           alert('Request failed.  Returned status of ' + xhr.status);
         }
-     }
-    ajax("https://cwpeng.github.io/live-records-samples/data/products.json", function(response){
-            render(response);
-        });
+        };
+}
+function render(data){
+    let shopHTML = "&lt;table  style=width:100%>&lt;tr>&lt;td> #&lt;/td>&lt;td> Name &lt;/td>&lt;td> Price &lt;/td>&lt;td> Description &lt;/td>&lt;/tr>";
+    for (let i = 0; i< data.length; i++){
+        console.log(data[i].name );
+        shopHTML += "&lt;tr>&lt;td>"+ i +"&lt;/td>&lt;td>"+ data[i].name+"&lt;/td>&lt;td>"+ data[i].price +"&lt;/td>&lt;td>"+data[i].description+"&lt;/td>&lt;/tr>";      
+    }
+    shopHTML += "&lt;table>";
+    // console.log(shopHTML);
+    document.getElementById('outpuTable').innerHTML = shopHTML;
+ }
+ajax("https://cwpeng.github.io/live-records-samples/data/products.json", function(response){
+        render(response);
+    });
         </pre>
     </code>           
     </section> 
@@ -64,12 +55,8 @@
         function ajax(src, callback){
         var xhr = new XMLHttpRequest();
                 xhr.open('GET', src, true);
-                xhr.setRequestHeader('Content-Type', 'application/json');
-                xhr.setRequestHeader('Access-Control-Allow-Origin', 'https://cwpeng.github.io/live-records-samples/data/products.json');
-                xhr.setRequestHeader('Access-Control-Allow-Credential',true);
-                xhr.setRequestHeader('Access-Control-Allow-Methods', 'GET');
+                xhr.withCreadentials =false;
                 xhr.send();
-
                 xhr.onload = function() {
                 if (xhr.status === 200) {
                     callback(JSON.parse(xhr.responseText));
@@ -79,14 +66,14 @@
                 };
         }
         function render(data){
+            let shopHTML = "<table  style=width:100%><tr><td> #</td><td> Name </td><td> Price </td><td> Description </td></tr>";
             for (let i = 0; i< data.length; i++){
-            
                 console.log(data[i].name );
-                let shopHTML = " ";
-                shopHTML += "<tr><td>"+ i +"</td><td>"+ data[i].name+"</td><td>"+ data[i].price +"</td><td>"+data[i].description+"</td></tr>";
-                console.log(shopHTML);
-                $(table).append(shopHTML);
+                shopHTML += "<tr><td>"+ i +"</td><td>"+ data[i].name+"</td><td>"+ data[i].price +"</td><td>"+data[i].description+"</td></tr>";      
             }
+            shopHTML += "</table>";
+            // console.log(shopHTML);
+            document.getElementById('outpuTable').innerHTML = shopHTML;
          }
         ajax("https://cwpeng.github.io/live-records-samples/data/products.json", function(response){
                 render(response);
