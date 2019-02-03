@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-
 import './reset.css';
 import './App.css';
-// import 'https://code.jquery.com/jquery-3.1.0.min.js';
 
 // import {Jumbotron} from 'react-bootstrap';
 // import SearchForm from './components/SearchForm';
