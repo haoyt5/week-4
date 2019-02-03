@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Assignment 2: Callback Function and Advanced HTML DOM</title>
     <link rel="stylesheet" href="stylesheets/style.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+ <!--    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> -->
 </head>
 <body>
     <header>
@@ -28,15 +28,21 @@
         <pre>
 
     function ajax(src, callback){
-        $.ajax({
-                url: src,
-                dataType: 'json',
-                type: 'GET',
-                crossDomain: true,
-                success: function(response){
-                    callback(response);
+        var xhr = new XMLHttpRequest();
+                xhr.open('GET', src, true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.setRequestHeader('Access-Control-Allow-Origin', 'https://cwpeng.github.io/live-records-samples/data/products.json');
+                xhr.setRequestHeader('Access-Control-Allow-Credential',true);
+                xhr.setRequestHeader('Access-Control-Allow-Methods', 'GET');
+                xhr.send();
+
+                xhr.onload = function() {
+                if (xhr.status === 200) {
+                    callback(JSON.parse(xhr.responseText));
+                } else {
+                   alert('Request failed.  Returned status of ' + xhr.status);
                 }
-        });         
+                };        
     }
     function render(data){
         for (let i = 0; i< data.length; i++){
@@ -56,15 +62,21 @@
     </section> 
     <script>
         function ajax(src, callback){
-            $.ajax({
-                    url: src,
-                    dataType: 'json',
-                    type: 'GET',
-                    crossDomain: true,
-                    success: function(response){
-                        callback(response);
-                    }
-            });         
+        var xhr = new XMLHttpRequest();
+                xhr.open('GET', src, true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.setRequestHeader('Access-Control-Allow-Origin', 'https://cwpeng.github.io/live-records-samples/data/products.json');
+                xhr.setRequestHeader('Access-Control-Allow-Credential',true);
+                xhr.setRequestHeader('Access-Control-Allow-Methods', 'GET');
+                xhr.send();
+
+                xhr.onload = function() {
+                if (xhr.status === 200) {
+                    callback(JSON.parse(xhr.responseText));
+                } else {
+                   alert('Request failed.  Returned status of ' + xhr.status);
+                }
+                };
         }
         function render(data){
             for (let i = 0; i< data.length; i++){
