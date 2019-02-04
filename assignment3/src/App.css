@@ -463,6 +463,6 @@ a:focus {
 
 }
 #show-box{
-    display: none;
-    transition: all 800ms ease-in-out;
+    /* display: none;
+    transition: all 800ms ease-in-out; */
 }

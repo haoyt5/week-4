@@ -1,13 +1,46 @@
 import React, { Component } from 'react';
 import './reset.css';
 import './App.css';
-
+import NewComponent from './NewComponent';
+// import ChangeText from './ChangeText';
 // import {Jumbotron} from 'react-bootstrap';
 // import SearchForm from './components/SearchForm';
 // import Results from './components/Results';
-
+const Child = () => (
+  <div className='modal'>
+        Hello, World!
+    </div>
+  )
 
 class App extends Component {
+
+
+
+
+  constructor(props) {
+    super(props);
+    this.state = {isToggleOn: true};
+    
+    // This binding is necessary to make `this` work in the callback
+    this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      showComponent: false,
+    };
+    this._onButtonClick = this._onButtonClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
+    }));
+  }
+  _onButtonClick() {
+    this.setState({
+      showComponent: true,
+    });
+  }
+
+
   render() {
     return (
       // <div>
@@ -53,8 +86,9 @@ class App extends Component {
   <section className="main">
     {/* Start Welcome Message */}
     <div className="welcome givePadding bg-color-blue">
+
       <div className="container">
-        <h1 id="welcome-text-change" onclick="changeText()" className="u-text-center welcome-text u-pointer">Welcome Message</h1>
+        <h1 id="welcome-text-change" onClick={this.handleClick} className="u-text-center welcome-text u-pointer">{this.state.isToggleOn ? 'Welcome Message' : 'Have A Goog Time'}</h1>
       </div>
     </div>
     {/* End Welcome Message */}
@@ -85,26 +119,36 @@ class App extends Component {
     <div className="callbutton">
       <div className="container">
         <div className="u-text-center  titlePadding">
-          <div id="btn-show" className="btn btn--lg u-shadow-minor">Call to Action</div>
+          <button onClick={this._onButtonClick} id="btn-show" className="btn btn--lg u-shadow-minor">Call to Action</button>
         </div>
-        <div id="show-box">
-          <div className="row">
-            <div className="col-1-2">
-              <div className="contentbox u-shadow bg-color-deep-blue u-text-center u-margin-16 u-padding-bt-120 u-padding-tp-8 ">Content Box 5</div>
-            </div>
-            <div className="col-1-2">
-              <div className="contentbox u-shadow bg-color-deep-blue u-text-center u-margin-16 u-padding-bt-120 u-padding-tp-8 ">Content Box 6</div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-1-2">
-              <div className="contentbox u-shadow bg-color-deep-blue u-text-center u-margin-16 u-padding-bt-120 u-padding-tp-8 ">Content Box 7</div>
-            </div>
-            <div className="col-1-2">
-              <div className="contentbox u-shadow bg-color-deep-blue u-text-center u-margin-16 u-padding-bt-120 u-padding-tp-8 ">Content Box 8</div>
-            </div>
-          </div>
-        </div>
+        {this.state.showComponent ?
+           <NewComponent /> :
+           null
+        }
+
+
+
+ { 
+        //  <div id="show-box">
+        //   <div className="row">
+        //     <div className="col-1-2">
+        //       <div className="contentbox  bg-color-deep-blue u-text-center u-margin-16 u-padding-bt-120 u-padding-tp-8 ">Content Box 5</div>
+        //     </div>
+        //     <div className="col-1-2">
+        //       <div className="contentbox  bg-color-deep-blue u-text-center u-margin-16 u-padding-bt-120 u-padding-tp-8 ">Content Box 6</div>
+        //     </div>
+        //   </div>
+
+        //   <div className="row">
+        //     <div className="col-1-2">
+        //       <div className="contentbox  bg-color-deep-blue u-text-center u-margin-16 u-padding-bt-120 u-padding-tp-8 ">Content Box 7</div>
+        //   </div>
+        //   <div className="col-1-2">
+        //       <div className="contentbox  bg-color-deep-blue u-text-center u-margin-16 u-padding-bt-120 u-padding-tp-8 ">Content Box 8</div>
+        //     </div>
+        //   </div>
+        // </div>
+ }
       </div>
     </div>
     {/* End Button */}
