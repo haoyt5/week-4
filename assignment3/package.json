@@ -2,7 +2,7 @@
   "name": "search-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": " https://haoyt5.github.io/week4-3/",
+  "homepage": "https://haoyt5.github.io/week-4/assignment3/",
   "dependencies": {
     "bootstrap": "^4.2.1",
     "gh-pages": "^2.0.1",
